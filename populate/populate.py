@@ -46,6 +46,9 @@ from pynetdicom import (
     AE,
     StoragePresentationContexts
 )
+from pydicom.uid import JPEG2000Lossless, JPEGLossless
+from pynetdicom.presentation import build_context
+from pynetdicom.sop_class import BreastTomosynthesisImageStorage, DigitalMammographyXRayImagePresentationStorage, DigitalMammographyXRayImageProcessingStorage
 
 '''
     In runtime there will be some global variables available
@@ -371,6 +374,18 @@ class Association(object):
 
         # store context uids
         ae.requested_contexts = StoragePresentationContexts
+        context_a = build_context(BreastTomosynthesisImageStorage, JPEGLossless)
+        context_b = build_context(BreastTomosynthesisImageStorage, JPEG2000Lossless)
+        context_c = build_context(DigitalMammographyXRayImagePresentationStorage, JPEGLossless)
+        context_d = build_context(DigitalMammographyXRayImagePresentationStorage, JPEG2000Lossless)
+        context_e = build_context(DigitalMammographyXRayImageProcessingStorage, JPEGLossless)
+        context_f = build_context(DigitalMammographyXRayImageProcessingStorage, JPEG2000Lossless)
+        ae.add_requested_context(context_a)
+        ae.add_requested_context(context_b)
+        ae.add_requested_context(context_c)
+        ae.add_requested_context(context_d)
+        ae.add_requested_context(context_e)
+        ae.add_requested_context(context_f)
 
         # associate with the peer AE
         self.logger.debug('Requesting Association with the peer {0}'.format(self.output))
@@ -803,8 +818,8 @@ def args(args):
         type=int,
         help='set the maximum number of parallel \
             processes allowed for C-STORE threads \
-            (default value is 10)',
-        default=10,
+            (default value is 1)',
+        default=1,
         required=False
     )
 
