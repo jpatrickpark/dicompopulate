@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-from __future__ import print_function
-from __future__ import absolute_import
-
 # project name
 __project__ = "populate"
 
@@ -46,7 +42,7 @@ from concurrent.futures import (
 )
 from pydicom import read_file
 from pydicom.uid import ImplicitVRLittleEndian
-from pynetdicom3 import (
+from pynetdicom import (
     AE,
     StoragePresentationContexts
 )

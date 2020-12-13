@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-from __future__ import print_function
-from __future__ import absolute_import
-
 import importlib
 import os
 import re
@@ -13,12 +9,12 @@ with open(os.path.join(BASE_PATH, 'README.md'), "r") as file:
     long_description = file.read()
 
 install_requires = [
-   'pydicom',
-   'futures'
+   #'pydicom',
+   #'futures'
 ]
 
 github_dependencies = {
-    'pynetdicom3': 'https://github.com/pydicom/pynetdicom3.git'
+    #'pynetdicom': 'https://github.com/pydicom/pynetdicom.git'
 }
 
 # install dependencies only available on github repositories
